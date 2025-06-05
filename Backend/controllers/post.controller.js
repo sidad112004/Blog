@@ -32,5 +32,31 @@ const createPost = Asynchandler(async (req, res) => {
 }
 );
 
+ const deletePost = Asynchandler(async (req, res) => {
+  const { postId } = req.body;
+  const userId = req.user._id;
 
-export {createPost}
+  if (!postId) {
+    throw new ApiError(400, "Post ID is required");
+  }
+
+
+  const post = await Post.findById(postId);
+
+  if (!post) {
+    throw new ApiError(404, "Post not found");
+  }
+
+  if (post.author.toString() !== userId.toString()) {
+    throw new ApiError(403, "You can only delete your own posts");
+  }
+
+  await post.deleteOne();
+
+  res
+    .status(200)
+    .json(new ApiRespoance(200, null, "Post deleted successfully"));
+});
+
+
+export {createPost,deletePost};
