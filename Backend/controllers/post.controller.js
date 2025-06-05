@@ -87,4 +87,45 @@ const updatePost = Asynchandler(async (req, res) => {
 }
 );
 
-export {createPost,deletePost, updatePost};
+const myposts = Asynchandler(async (req, res) => {
+  const userId = req.user._id;
+  if (!userId) {
+    throw new ApiError(400, "User ID is required");
+  }
+  const posts = await Post.find({ author: userId });
+
+  if (!posts || posts.length === 0) {
+    throw new ApiError(404, "No posts found for this user");
+  }
+
+  res.status(200).json(new ApiRespoance(200, posts, "Posts retrieved successfully"));
+});
+
+const allPosts = Asynchandler(async (req, res) => {
+  const posts = await Post.find().populate('author', 'name email username bio');
+
+  if (!posts || posts.length === 0) {
+    throw new ApiError(404, "No posts found");
+  }
+
+  res.status(200).json(new ApiRespoance(200, posts, "Posts retrieved successfully"));
+}
+);
+
+const visitedUserPosts = Asynchandler(async (req, res) => {
+  const { userId } = req.params;
+
+  if (!userId) {
+    throw new ApiError(400, "User ID is required");
+  }
+
+  const posts = await Post.find({ author: userId }).populate('author', 'name email username bio');
+
+  if (!posts || posts.length === 0) {
+    throw new ApiError(404, "No posts found for this user");
+  }
+
+  res.status(200).json(new ApiRespoance(200, posts, "Posts retrieved successfully"));
+});
+
+export {createPost,deletePost, updatePost, myposts, allPosts,visitedUserPosts};
