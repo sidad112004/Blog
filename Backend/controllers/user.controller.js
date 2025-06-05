@@ -45,8 +45,7 @@ const registerUser = Asynchandler(async (req, res) => {
                 name,
                 username,
                 email,
-                password,
-                verficationcode,
+                password,      
                 bio
             });
 
@@ -54,7 +53,7 @@ const registerUser = Asynchandler(async (req, res) => {
             throw new ApiError(400, "user not created")
         }
 
-        const finaluser = await User.findById(user._id).select("-password -RefreshToken -verficationcode");
+        const finaluser = await User.findById(user._id).select("-password -RefreshToken");
         res
             .status(201)
             .json(

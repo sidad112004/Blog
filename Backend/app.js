@@ -13,8 +13,9 @@ app.use(cors({
 app.use(cookieParser());
 
 import router from "./routes/user.route.js";
-
+import postrouter from "./routes/post.route.js";
 app.use('/user',router);
+app.use('/post',postrouter);
 
 
 
