@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Myblog from "./Myblog";
 
 function Myprofile() {
@@ -15,11 +14,15 @@ function Myprofile() {
 
   return (
     <div className="min-h-screen bg-base-200 p-6">
-      <div className="bg-base-100 rounded-2xl p-6 mb-6 text-center">
+      {/* Top card */}
+      <div className="card bg-base-100 rounded-box grid place-items-center p-6 mb-4">
         <h1 className="text-3xl font-bold">{user.name}</h1>
         <p className="text-sm text-gray-500">@{user.username}</p>
       </div>
 
+      <div className="divider"></div>
+
+      {/* Tabs */}
       <div className="tabs tabs-boxed justify-center mb-6">
         <a className={`tab ${tab === "profile" ? "tab-active" : ""}`} onClick={() => setTab("profile")}>
           Profile Info
@@ -29,13 +32,20 @@ function Myprofile() {
         </a>
       </div>
 
-      <div className="bg-base-100 rounded-xl p-6">
+      {/* Bottom card */}
+      <div className="card rounded-box p-6">
         {tab === "profile" ? (
-          <div className="space-y-4">
-            <p><span className="font-semibold">Email:</span> {user.email}</p>
-            <p><span className="font-semibold">Bio:</span> {user.bio}</p>
-            <p><span className="font-semibold">Total Blogs:</span> {user.totalBlogs}</p>
-            <button className="btn btn-primary mt-4">Edit Profile</button>
+          <div className="flex flex-col md:flex-row gap-8 items-start">
+            
+           
+
+            {/* Right: Actual User Info */}
+            <div className="space-y-4 flex-1">
+              <p><span className="font-semibold">Email:</span> {user.email}</p>
+              <p><span className="font-semibold">Bio:</span> {user.bio}</p>
+              <p><span className="font-semibold">Total Blogs:</span> {user.totalBlogs}</p>
+              <button className="btn btn-primary mt-4">Edit Profile</button>
+            </div>
           </div>
         ) : (
           <Myblog />

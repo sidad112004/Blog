@@ -74,53 +74,45 @@ function Myblog() {
 
   return (
     <>
-      <div className="space-y-6">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {blogs.map((blog) => (
-          <div
-            key={blog.id}
-            className="flex flex-col md:flex-row gap-4 items-center p-4"
-          >
-            {blog.image !== "" && (
-              <img
-                src={blog.image}
-                alt={blog.title}
-                className="w-32 h-20 object-cover rounded"
-              />
+          <div key={blog.id} className="card bg-base-100 shadow-md">
+            {blog.image && (
+              <figure>
+                <img src={blog.image} alt={blog.title} className="h-48 w-full object-cover" />
+              </figure>
             )}
-            <div className="flex-1">
-              <h2 className="text-xl font-semibold">{blog.title}</h2>
-              <p className="text-gray-700">{blog.content}</p>
+            <div className="card-body">
+              <h2 className="card-title">{blog.title}</h2>
+              <p>{blog.content}</p>
               <p className="text-sm text-gray-500">Date: {blog.date}</p>
-              <div className="mt-2 space-x-2">
+              <div className="flex flex-wrap gap-2 mt-2">
                 {blog.tags.map((tag, idx) => (
                   <span key={idx} className="badge badge-outline">{tag}</span>
                 ))}
               </div>
-            </div>
-            <div className="flex flex-col gap-2">
-              <button
-                className="btn btn-primary"
-                onClick={() => openEditModal(blog)}
-              >
-                Edit
-              </button>
-              <button
-                className="btn btn-error"
-                onClick={() => handleDelete(blog.id)}
-              >
-                Delete
-              </button>
+              <div className="card-actions justify-end mt-4">
+                <button
+                  className="btn btn-sm btn-primary"
+                  onClick={() => openEditModal(blog)}
+                >
+                  Edit
+                </button>
+                <button
+                  className="btn btn-sm btn-error"
+                  onClick={() => handleDelete(blog.id)}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Edit Blog Modal */}
       <dialog id="edit_modal" className="modal">
-        <form
-          method="dialog"
-          className="modal-box flex flex-col gap-4"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form method="dialog" className="modal-box flex flex-col gap-4" onSubmit={(e) => e.preventDefault()}>
           <button
             type="button"
             className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
@@ -159,11 +151,7 @@ function Myblog() {
           />
 
           <div className="modal-action justify-end">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleSave}
-            >
+            <button type="button" className="btn btn-primary" onClick={handleSave}>
               Save
             </button>
           </div>
