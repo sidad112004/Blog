@@ -24,7 +24,8 @@ function AppWrapper() {
         <Route path="/createpost" element={<Createpost />} />
         <Route path="/editprofile" element={<EditProfile />} />
 
-        <Route path="/user/:id" element={<UserProfile />} />
+       <Route path="/profile/:userId" element={<UserProfile />} />
+
       </Routes>
     </>
   );
