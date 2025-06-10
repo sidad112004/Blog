@@ -64,7 +64,7 @@ function Myprofile() {
             <div className="space-y-4 flex-1">
               <p><span className="font-semibold">Email:</span> {user.email}</p>
               <p><span className="font-semibold">Bio:</span> {user.bio}</p>
-              <p><span className="font-semibold">Total Blogs:</span> {user.totalBlogs || 0}</p>
+             
               <button className="btn btn-primary mt-4" onClick={() => navigate('/editprofile')}>
                 Edit Profile
               </button>
