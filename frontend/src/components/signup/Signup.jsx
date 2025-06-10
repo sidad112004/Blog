@@ -13,7 +13,7 @@ function Signup() {
         e.preventDefault();
 
         if (!name || !username || !email || !password) {
-            alert("Please fill in all fields.");
+           toast.error("Please fill in all fields.");
             return;
         }
 

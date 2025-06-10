@@ -1,24 +1,41 @@
 import { useState } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 function Signin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
 
-    const handleSignin = (e) => {
+    const handleSignin = async (e) => {
         e.preventDefault();
+
         if (!username || !password) {
-            alert("Please enter both username and password.");
+            toast.error("Please enter both username and password.");
             return;
         }
-        console.log("Username:", username);
-        console.log("Password:", password);
+
+        try {
+            const res = await axios.post(
+                "http://localhost:3000/user/login",
+                { username, password },
+                { withCredentials: true }
+            );
+
+            toast.success("Login successful!");
+            navigate("/"); 
+        } catch (error) {
+            console.error("Login error:", error);
+            toast.error(error.response?.data?.message || "Login failed. Please try again.");
+        }
     };
 
     return (
         <div className="min-h-screen bg-base-200 flex items-center justify-center px-4">
             <div className="w-full max-w-5xl bg-base-100 rounded-3xl shadow-xl overflow-hidden flex flex-col lg:flex-row">
                 
-                {/* Left side login image - hidden on mobile */}
+                {/* Left image */}
                 <div className="hidden lg:flex w-full lg:w-1/2 bg-base-300 items-center justify-center p-6">
                     <img
                         src="https://cdn.dribbble.com/users/1958452/screenshots/10979353/media/7e62ec4f56a2e3dbb4c31808bc6ae5df.png"
@@ -27,7 +44,7 @@ function Signin() {
                     />
                 </div>
 
-                {/* Right side form */}
+                {/* Right form */}
                 <div className="w-full lg:w-1/2 p-8 sm:p-12">
                     <h2 className="text-4xl font-bold mb-6 text-center">Welcome Back 👋</h2>
                     <p className="text-center text-sm mb-8 text-gray-500">
@@ -59,11 +76,7 @@ function Signin() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
-                            <label className="label">
-                                <a href="#" className="label-text-alt link link-hover text-sm text-primary">
-                                    Forgot password?
-                                </a>
-                            </label>
+                            
                         </div>
 
                         <button type="submit" className="btn btn-primary w-full">
@@ -72,7 +85,7 @@ function Signin() {
 
                         <div className="text-sm text-center text-gray-500 mt-4">
                             Don’t have an account?
-                            <a href="#" className="ml-1 text-primary font-medium link link-hover">Sign up</a>
+                            <Link to="/signup" className="ml-1 text-primary font-medium link link-hover">Sign up</Link>
                         </div>
                     </form>
                 </div>
