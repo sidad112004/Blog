@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -6,7 +7,9 @@ function Navbar() {
   return (
     <div className="navbar shadow-md py-5 px-4 md:px-8 text-lg sticky top-0 z-50 bg-base-100">
       <div className="flex-1">
-        <a className="btn btn-ghost text-3xl font-extrabold">BlogNest</a>
+        <Link to="/" className="btn btn-ghost text-3xl font-extrabold">
+          BlogNest
+        </Link>
       </div>
 
       {/* Desktop search input */}
@@ -36,13 +39,19 @@ function Navbar() {
             className="menu menu-sm dropdown-content text-white bg-base-100 rounded-xl z-20 mt-4 w-56 p-3 shadow-lg text-base"
           >
             <li>
-              <a className="justify-between rounded-lg p-2">Profile</a>
+              <Link to="/profile" className="justify-between rounded-lg p-2">
+                Profile
+              </Link>
             </li>
             <li>
-              <a className="rounded-lg p-2">Settings</a>
+              <Link to="/settings" className="rounded-lg p-2">
+                Settings
+              </Link>
             </li>
             <li>
-              <a className="rounded-lg p-2">Logout</a>
+              <Link to="/logout" className="rounded-lg p-2">
+                Logout
+              </Link>
             </li>
           </ul>
         </div>
@@ -92,27 +101,27 @@ function Navbar() {
           />
 
           <div className="flex flex-col gap-2 text-center">
-            <a
-              href="#profile"
+            <Link
+              to="/profile"
               className="btn btn-ghost rounded-lg text-lg"
               onClick={() => setMenuOpen(false)}
             >
               Profile
-            </a>
-            <a
-              href="#settings"
+            </Link>
+            <Link
+              to="/settings"
               className="btn btn-ghost rounded-lg text-lg"
               onClick={() => setMenuOpen(false)}
             >
               Settings
-            </a>
-            <a
-              href="#logout"
+            </Link>
+            <Link
+              to="/logout"
               className="btn btn-ghost rounded-lg text-lg"
               onClick={() => setMenuOpen(false)}
             >
               Logout
-            </a>
+            </Link>
           </div>
         </div>
       )}

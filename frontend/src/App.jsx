@@ -1,4 +1,6 @@
 import React from 'react'
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
+import { Toaster } from 'react-hot-toast'
 import Signin from './components/signin/Signin'
 import Signup from './components/signup/Signup'
 import Dashboard from './components/dashboard/Dashboard'
@@ -6,19 +8,31 @@ import Navbar from './components/navbar/Navbar'
 import Myprofile from './components/myprofile/Myprofile'
 import UserProfile from './components/dashboard/UserProfile.jsx'
 
-function App() {
+function AppWrapper() {
+  const location = useLocation();
+  const hideNavbarPaths = ['/signin', '/signup'];
+
   return (
     <>
-     <Navbar/>
-
-    {/* <Signin/> */}
-    {/* <Signup/> */}
-    <Dashboard/>
-    {/* <UserProfile/> */}
-    {/* <Myprofile/> */}
-   
+      {!hideNavbarPaths.includes(location.pathname) && <Navbar />}
+      <Routes>
+        <Route path="/" element={<Dashboard />} />
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/profile" element={<Myprofile />} />
+        <Route path="/user/:id" element={<UserProfile />} />
+      </Routes>
     </>
-  )
+  );
 }
 
-export default App
+function App() {
+  return (
+    <Router>
+      <AppWrapper />
+      <Toaster />
+    </Router>
+  );
+}
+
+export default App;
