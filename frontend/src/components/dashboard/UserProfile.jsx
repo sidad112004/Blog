@@ -39,9 +39,9 @@ function UserProfile() {
         <p className="text-sm text-gray-600">{user?.email}</p>
         {user?.bio && <p className="mt-2">{user.bio}</p>}
       </div>
-
+      
       <h2 className="text-xl font-semibold mt-8">User's Blogs</h2>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 ">
         {posts.map((blog) => (
           <div key={blog._id} className="card bg-base-100 shadow-md">
             {blog.image && (

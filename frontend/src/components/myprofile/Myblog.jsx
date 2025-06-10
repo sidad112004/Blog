@@ -86,7 +86,7 @@ function Myblog() {
     <>
     <div className="text-lg text-center p-4">Number of Blogs: {numberblogs}</div>
     
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 ">
         
         {blogs.map((blog) => (
           <div key={blog._id} className="card bg-base-100 shadow-md">
