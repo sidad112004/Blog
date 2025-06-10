@@ -7,6 +7,7 @@ import Dashboard from './components/dashboard/Dashboard'
 import Navbar from './components/navbar/Navbar'
 import Myprofile from './components/myprofile/Myprofile'
 import UserProfile from './components/dashboard/UserProfile.jsx'
+import Createpost from './components/navbar/Createpost.jsx'
 
 function AppWrapper() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function AppWrapper() {
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Myprofile />} />
+        <Route path="/createpost" element={<Createpost />} />
         <Route path="/user/:id" element={<UserProfile />} />
       </Routes>
     </>
