@@ -140,4 +140,33 @@ const logoutUser = Asynchandler(async (req, res) => {
         )
 })
 
-export { userinfo,registerUser, loginUser, logoutUser };
+const updateProfile = Asynchandler(async (req, res) => {
+  const id = req.user._id;
+  const { name, username, email, bio } = req.body;
+
+  const existingUsername = await User.findOne({ username, _id: { $ne: id } });
+  if (existingUsername) {
+    throw new ApiError(400, "Username is already taken.");
+  }
+  
+  const existingEmail = await User.findOne({ email, _id: { $ne: id } });
+  if (existingEmail) {
+    throw new ApiError(400, "Email is already in use.");
+  }
+
+  const user = await User.findByIdAndUpdate(
+    id,
+    { name, username, email, bio },
+    { new: true, runValidators: true }
+  ).select("-password -RefreshToken");
+
+  if (!user) {
+    throw new ApiError(400, "User not found");
+  }
+
+  res.status(200).json(new ApiRespoance(200, user, "Profile updated successfully"));
+});
+
+
+
+export { userinfo,registerUser, loginUser, logoutUser,updateProfile };

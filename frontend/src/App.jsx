@@ -8,9 +8,9 @@ import Navbar from './components/navbar/Navbar'
 import Myprofile from './components/myprofile/Myprofile'
 import UserProfile from './components/dashboard/UserProfile.jsx'
 import Createpost from './components/navbar/Createpost.jsx'
-
+import EditProfile from './components/myprofile/EditProfile.jsx'
 function AppWrapper() {
-  const location = useLocation();
+  const location = useLocation(); 
   const hideNavbarPaths = ['/signin', '/signup'];
 
   return (
@@ -22,6 +22,8 @@ function AppWrapper() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Myprofile />} />
         <Route path="/createpost" element={<Createpost />} />
+        <Route path="/editprofile" element={<EditProfile />} />
+
         <Route path="/user/:id" element={<UserProfile />} />
       </Routes>
     </>
