@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 function Signup() {
@@ -8,7 +8,7 @@ function Signup() {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const navigate = useNavigate();
     const handleSignup = async (e) => {
         e.preventDefault();
 
@@ -28,8 +28,7 @@ function Signup() {
             });
 
             toast.success("Signup successful! Please log in.");
-
-            // console.log(response);
+            navigate("/signin");
         } catch (error) {
             console.error("Signup error:", error);
             toast.error(error.response?.data?.message || "Signup failed. Please try again.");
@@ -42,7 +41,7 @@ function Signup() {
                 {/* Left image section */}
                 <div className="hidden lg:flex w-full lg:w-1/2 bg-base-300 items-center justify-center p-6">
                     <img
-                        src="https://cdn.dribbble.com/users/1751799/screenshots/3818675/media/76e3d44d3e2e6f41a1dc00ce470b1874.png"
+                        src="https://imgs.search.brave.com/2ca_spW7-6K-y8FJ7alokh1UAAodLzNc2Ubsr08z0PQ/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdDMu/ZGVwb3NpdHBob3Rv/cy5jb20vMTgyNjY2/NC8xODYzOC9pLzQ1/MC9kZXBvc2l0cGhv/dG9zXzE4NjM4NjAy/Ni1zdG9jay1waG90/by1zaWduLXRleHQt/YWxwaGFiZXRzLXdy/aXR0ZW4tZ3JlZW4u/anBn"
                         alt="Signup Illustration"
                         className="w-full h-auto max-h-[450px] object-contain"
                     />

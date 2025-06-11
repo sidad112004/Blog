@@ -61,7 +61,7 @@ function Navbar() {
             </div>
           </div>
 
-          <ul tabIndex={0} className="menu menu-sm dropdown-content text-white bg-base-100 rounded-xl z-20 mt-4 w-56 p-3 shadow-lg text-base">
+          <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-xl z-20 mt-4 w-56 p-3 shadow-lg text-base">
             <li><Link to="/profile" className="rounded-lg p-2">Profile</Link></li>
             <li><button onClick={handleLogout} className="rounded-lg p-2 text-left w-full">Logout</button></li>
           </ul>

@@ -53,7 +53,7 @@ function UserProfile() {
                       : `https://source.unsplash.com/featured/?${blog.tags?.[0] || "blog"}`
                   }
                   alt={blog.title}
-                  className="h-48 w-full object-cover"
+                  className="hidden lg:flex w-full lg:w-1/3 bg-base-150 items-center justify-center p-6"
                 />
               </figure>
             )}

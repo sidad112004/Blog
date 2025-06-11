@@ -92,7 +92,7 @@ function Myblog() {
           <div key={blog._id} className="card bg-base-100 shadow-md">
             {blog.image && (
               <figure>
-                <img src={blog.image} alt={blog.title} className="h-48 w-full object-cover" />
+                <img src={blog.image} alt={blog.title} className="hidden lg:flex w-full lg:w-1/3 bg-base-150 items-center justify-center p-6" />
               </figure>
             )}
             <div className="card-body">
