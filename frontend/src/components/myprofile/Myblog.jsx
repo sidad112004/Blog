@@ -10,7 +10,7 @@ function Myblog() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.post("http://localhost:3000/post/myposts", {}, {
+        const res = await axios.get("http://localhost:3000/post/myposts",  {
           withCredentials: true,
         });
         setBlogs(res.data.data || []);

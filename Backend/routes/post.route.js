@@ -10,10 +10,10 @@ postrouter.post('/deletepost', authverfication, deletePost);
 
 postrouter.post('/updatepost', authverfication, updatePost); 
 
-postrouter.post('/myposts', authverfication, myposts);
+postrouter.get('/myposts', authverfication, myposts);
 
-postrouter.post('/allposts',authverfication,allPosts);
+postrouter.get('/allposts',authverfication,allPosts);
 
-postrouter.post('/visiteduserposts/:userId', authverfication, visitedUserPosts)
+postrouter.get('/visiteduserposts/:userId', authverfication, visitedUserPosts)
 
 export default postrouter;

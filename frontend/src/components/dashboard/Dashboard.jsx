@@ -9,7 +9,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const res = await axios.post('http://localhost:3000/post/allposts', {}, {
+        const res = await axios.get('http://localhost:3000/post/allposts',{
           withCredentials: true,
         });
         setBlogs(res.data.data || []);

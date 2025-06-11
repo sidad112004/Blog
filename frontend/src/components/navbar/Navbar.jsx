@@ -14,7 +14,7 @@ function Navbar() {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        await axios.post("http://localhost:3000/user/userinfo", {}, { withCredentials: true });
+        await axios.get("http://localhost:3000/user/userinfo",  { withCredentials: true });
       } catch (error) {
         toast.error("Please login first.");
         navigate("/signin");
@@ -25,7 +25,7 @@ function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/user/logout", {}, { withCredentials: true });
+      const res = await axios.get("http://localhost:3000/user/logout", { withCredentials: true });
       toast.success(res.data.message || "Logged out successfully.");
       navigate("/signin");
     } catch (error) {

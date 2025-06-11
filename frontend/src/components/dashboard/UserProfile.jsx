@@ -11,7 +11,7 @@ function UserProfile() {
   useEffect(() => {
     const fetchUserPosts = async () => {
       try {
-        const res = await axios.post(`http://localhost:3000/post/visiteduserposts/${userId}`, {}, {
+        const res = await axios.get(`http://localhost:3000/post/visiteduserposts/${userId}`, {
           withCredentials: true,
         });
         setPosts(res.data?.data || []);
