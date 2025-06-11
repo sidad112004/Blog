@@ -38,7 +38,7 @@ function Signin() {
                 {/* Left image */}
                 <div className="hidden lg:flex w-full lg:w-1/2 bg-base-300 items-center justify-center p-6">
                     <img
-                        src="https://cdn.dribbble.com/users/1958452/screenshots/10979353/media/7e62ec4f56a2e3dbb4c31808bc6ae5df.png"
+                        src="https://imgs.search.brave.com/Ip8Su_TORHSCu2g_2KhykCLrgnOzKRjXTEh-qX0h6T8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAxLzc5LzY5Lzg4/LzM2MF9GXzE3OTY5/ODg0OF9xUXhURGRs/M3JnaTdqUXMyVkhR/U09QbUZ3aWxHeFc5/ZC5qcGc"
                         alt="Login Illustration"
                         className="w-full h-auto max-h-[450px] object-contain"
                     />

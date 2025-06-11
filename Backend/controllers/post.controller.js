@@ -92,8 +92,8 @@ const myposts = Asynchandler(async (req, res) => {
   if (!userId) {
     throw new ApiError(400, "User ID is required");
   }
-  const posts = await Post.find({ author: userId });
-
+  const temp = await Post.find({ author: userId });
+  const posts = temp.reverse();
   if (!posts || posts.length === 0) {
     throw new ApiError(404, "No posts found for this user");
   }
@@ -102,8 +102,8 @@ const myposts = Asynchandler(async (req, res) => {
 });
 
 const allPosts = Asynchandler(async (req, res) => {
-  const posts = await Post.find().populate('author', 'name email username bio');
-
+  const temp = await Post.find().populate('author', 'name email username bio');
+   const posts=temp.reverse();
   if (!posts || posts.length === 0) {
     throw new ApiError(404, "No posts found");
   }
